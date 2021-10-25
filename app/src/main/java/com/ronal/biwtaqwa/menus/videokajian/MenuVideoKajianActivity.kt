@@ -1,0 +1,37 @@
+package com.ronal.biwtaqwa.menus.videokajian
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.fachri.biwtaqwa.R
+import com.fachri.biwtaqwa.databinding.ActivityMenuVideoKajianBinding
+import com.ronal.biwtaqwa.menus.videokajian.adapter.VideoKajianListAdapter
+import com.ronal.biwtaqwa.menus.videokajian.data.VideoKajianData
+import com.ronal.biwtaqwa.menus.videokajian.model.VideoKajianModel
+
+class MenuVideoKajianActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMenuVideoKajianBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMenuVideoKajianBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
+        setSupportActionBar(binding.toolbarMenuVideoKajian)
+        initNavMenu()
+
+    }
+
+    private fun initNavMenu() {
+        val list: ArrayList<VideoKajianModel> = arrayListOf()
+        binding.rvVideoKajian.setHasFixedSize(true)
+        list.addAll(VideoKajianData.listData)
+        binding.rvVideoKajian.layoutManager = LinearLayoutManager(this)
+        val listVideoAdapter = VideoKajianListAdapter(list)
+        binding.rvVideoKajian.adapter = listVideoAdapter
+
+    }
+
+}
